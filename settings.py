@@ -1,6 +1,6 @@
 # Django settings for website project.
 
-from localsettings import DEBUG, DB_PASSWORD
+from localsettings import DEBUG, DATABASES
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
