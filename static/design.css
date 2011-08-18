@@ -1,0 +1,191 @@
+/******************************************
+ * Global design
+ ******************************************/
+html {
+	width: 100%;
+}
+body {
+	width: 98%;
+	background-color: #F8F8FF;
+	margin: 0;
+	padding: 0;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+#header, #menu, #body {
+	width: 100%;
+	clear: both;
+	margin: 0;
+	margin-top: 10px;
+}
+
+#header img {
+	float: left;
+}
+
+#header {
+	font-size: 2em;
+}
+
+#menu {
+	list-style-type: none;
+	width: 100%;
+	padding: 0;
+	padding-left: 1%;
+}
+
+#menu li {
+	display: inline-block;
+	width: 13.7%;
+	text-align: center;
+	background-color: #CCCCFF;
+	overflow: hidden;
+	height: 100%;
+}
+#menu li:hover, #menu li:focus {
+	background-color: #C0C0FF;
+}
+#menu li a, #menu li a:visited, #menu li a:hover, #menu li a:focus {
+	color: black;
+	text-decoration: none;
+	display: block;
+	width: 100%
+	height: 100;
+	text-align: center;
+}
+
+#body {
+	margin-top: 10px;
+}
+
+#pagination {
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+/******************************************
+ * Form-related
+ ******************************************/
+form p label {
+	width: 200px;
+}
+
+/******************************************
+ * Errors
+ ******************************************/
+.error, .errorlist {
+	background-color: #FFE0E0;
+	border: 2px solid red;
+	display: inline-block;
+}
+
+.error.no-item-on-page {
+	display: block;
+	text-align: center;
+}
+
+/******************************************
+ * Profile
+ ******************************************/
+#profile table {
+	display: block-inline;
+	border: 1px solid black;
+}
+#profile table td.rowspan {
+	text-align: center;
+}
+#profile h1 {
+	text-align: center;
+}
+
+/******************************************
+ * News
+ ******************************************/
+#news_list {
+	list-style-type: none;
+	list-style-position: inside;
+	margin: 0;
+	padding: 0;
+}
+#news_list li {
+	border: 1px solid #A0A0FF;
+	margin: 0;
+	padding: 5px;
+}
+#news_list li h2 {
+	padding: 0;
+	margin: 0;
+}
+#news_list li h2 a, #news_list li h2 a:visited {
+	color: #5050FF;
+}
+#news_list li h2 a:hover, #news_list li h2 a:focus {
+	text-decoration: none;
+}
+
+#news {
+	border: 1px solid #A0A0FF;
+}
+#news dl#metadata {
+	margin: 5px;
+	padding: 0;
+	float: right;
+	display: inline-block;
+	border: 1px solid black;
+}
+#news dl#metadata dt:after {
+	content: ":";
+}
+#news #content h1, #news #content h2 {
+	text-align: left;
+}
+
+/******************************************
+ * Download links
+ ******************************************/
+#download_links table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#download_links table tr th, #download_links table tr td {
+	border: 1px solid black;
+	text-align: center;
+}
+#download_links table tr th {
+	background-color: #DDDDFF;
+}
+
+/******************************************
+ * Plugins
+ ******************************************/
+table#plugins {
+	width: 100%;
+	border-collapse: collapse;
+}
+table#plugins tr th, table#plugins tr td {
+	border: 1px solid black;
+	text-align: center;
+}
+table#plugins tr th {
+	background-color: #DDDDFF;
+}
+#plugin {
+	border: 1px solid #A0A0FF;
+}
+#plugin dl#metadata {
+	margin: 5px;
+	padding: 0;
+	float: right;
+	display: inline-block;
+	border: 1px solid black;
+}
+#plugin dl#metadata dt:after {
+	content: ":";
+}
+#plugin #description h1, #news #description h2 {
+	text-align: left;
+}
