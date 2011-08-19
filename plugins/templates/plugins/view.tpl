@@ -7,6 +7,9 @@
 		<dt>Author</dt>
 		<dd>{{ plugin.author }}</dd>
 
+		<dt>Minimal version</dt>
+		<dd>{{ plugin.minimal_version }}</dd>
+
 		<dt>Created at</dt>
 		<dd>{{ plugin.created_at }}</dd>
 

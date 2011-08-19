@@ -12,14 +12,13 @@ class Plugin(models.Model):
     description = models.TextField(help_text='A full description of the '
             'plugin.')
 
-    # TODO: Use versions instead of forks.
-    works_with = models.ManyToManyField(Fork, help_text='The forks of Supybot '
-            'this plugin works with.')
+    minimal_version = models.CharField(max_length=4096, help_text='The oldest '
+            'Supybot version compatible with this plugin.', default='0.83.4.1')
 
     created_at = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=False)
 
-    url = models.URLField(blank=True, help_text='The URL to the website of the plugin.')
+    url = models.URLField(blank=True, help_text='The URL to the website for the plugin.')
     git_repo = models.CharField(max_length=512, help_text='The URL to the '
             'Git repository.')
 

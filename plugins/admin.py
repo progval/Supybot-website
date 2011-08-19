@@ -7,8 +7,9 @@ class PluginAdmin(admin.ModelAdmin):
     ordering = ('-created_at',)
 
     fieldsets = [
-        ('About', {'fields': ['name', 'author', 'published', 'url', 'short_description', 'description']}),
-        ('Access', {'fields': ['git_repo', 'works_with']}),
+        ('Metadata', {'fields': ['name', 'author', 'published', 'minimal_version']}),
+        ('Access', {'fields': ['git_repo', 'url']}),
+        ('About', {'fields': ['short_description', 'description']}),
     ]
 
 admin.site.register(Plugin, PluginAdmin)
