@@ -70,8 +70,45 @@ h1 {
 /******************************************
  * Form-related
  ******************************************/
-form p label {
-	width: 200px;
+table.form {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+table.form tr {
+	border: 1px solid black;
+}
+table.form tr th {
+	border: 1px solid black;
+}
+table.form tr td {
+	padding: 5px;
+}
+table.form td td .errorlist {
+	margin: 0;
+	padding: 0;
+}
+table.form tr td input, table.form tr td textarea {
+	width: 100%;
+	text-align: left;
+}
+table.form tr td input[type=button], table.form tr td input[type=submit] {
+	width: 100%;
+	font-size: 2em;
+	text-align: center;
+}
+table.form tr td input[type=checkbox] {
+	width: auto;
+}
+table.form tr td span.helptext {
+	display: block;
+	color: #555555;
+	font-size: 0.8em;
+}
+table.form .errorlist {
+	list-style-type: none;
+	padding: 1px;
+	margin: 0;
 }
 
 /******************************************
@@ -80,7 +117,7 @@ form p label {
 .error, .errorlist {
 	background-color: #FFE0E0;
 	border: 2px solid red;
-	display: inline-block;
+	list-style-type: none;
 }
 
 .error.no-item-on-page {
@@ -188,4 +225,13 @@ table#plugins tr th {
 }
 #plugin #description h1, #news #description h2 {
 	text-align: left;
+}
+
+.goto_admin {
+	float: right;
+	display: inline-block;
+	text-align: right;
+}
+.saved {
+	background-color: #AAFFAA;
 }

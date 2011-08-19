@@ -1,10 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
+from django.core.context_processors import csrf
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
 from django.http import Http404
 
-from plugins.models import Plugin
+from plugins.models import Plugin, PluginSubmitForm, PluginEditForm
 
 def index(request):
     return redirect(listing, 1)
@@ -23,3 +25,44 @@ def view(request, name):
     plugin = get_object_or_404(Plugin, name=name)
     context = {'plugin': plugin}
     return render_to_response('plugins/view.tpl', context)
+
+@login_required
+def admin_index(request):
+    plugins = Plugin.objects.filter(author=request.user)
+    print repr(plugins)
+    context = {'plugins': plugins}
+    return render_to_response('plugins/admin_index.tpl', context)
+
+@login_required
+def admin_form(request, name):
+    saved = False
+    plugin = get_object_or_404(Plugin, name=name)
+    form = None
+    if request.method == "POST" and plugin.author == request.user:
+        form = PluginEditForm(request.POST, instance=plugin)
+        if form.is_valid():
+            form.save()
+            saved = True
+    if form is None:
+        form = PluginEditForm(instance=plugin)
+    context = {'form': form, 'saved': saved, 'plugin': plugin}
+    context.update(csrf(request))
+    return render_to_response('plugins/admin_form.tpl', context)
+
+@login_required
+def submit(request):
+    form = None
+    if request.method == "POST":
+        form = PluginSubmitForm(request.POST)
+        if form.is_valid():
+            plugin = form.save(commit=False)
+            plugin.author = request.user
+            form.save()
+            return redirect(admin_index)
+    if form is None:
+        form = PluginSubmitForm()
+    context = {'form': form, 'saved': False}
+    context.update(csrf(request))
+    return render_to_response('plugins/admin_form.tpl', context)
+
+

@@ -2,6 +2,10 @@
 {% load markup %}
 
 {% block body %}
+<div class="goto_admin">
+	<a href="{% url plugins_admin_index %}">Administrate your plugins</a><br />
+	<a href="{% url plugins_submit %}">Submit your plugins</a>
+</div>
 <h1>
 	Latest plugins
 </h1>
@@ -31,7 +35,7 @@
 				<td>{% autoescape on %}{{ plugin.short_description }}{% endautoescape %}</td>
 				<td>
 					{% if plugin.url %}<a href="{{ plugin.url }}">doc</a>{% endif %}
-					<a href="{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %} ">git</a>
+					{% if plugin.git_repo %}<a href="{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %} ">git</a>{% endif %}
 				</td>
 			</tr>
 		{% endfor %}

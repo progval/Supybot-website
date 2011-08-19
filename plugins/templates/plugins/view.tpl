@@ -8,7 +8,7 @@
 		<dd>{{ plugin.author }}</dd>
 
 		<dt>Minimal version</dt>
-		<dd>{{ plugin.minimal_version }}</dd>
+		<dd>{% autoescape on %}{{ plugin.minimal_version }}{% endautoescape %}</dd>
 
 		<dt>Created at</dt>
 		<dd>{{ plugin.created_at }}</dd>
