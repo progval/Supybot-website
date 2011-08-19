@@ -2,8 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django import forms
 
-from root.models import Fork
-
 class Plugin(models.Model):
     author = models.ForeignKey(User, help_text='The user who wrote the plugin.')
 
