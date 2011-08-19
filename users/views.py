@@ -18,7 +18,7 @@ def index(request):
             'email': user.email,
             }
 
-    return render_to_response('profile.tpl', context)
+    return render_to_response('users/profile.tpl', context)
 
 class LoginForm(forms.Form):
     login = forms.CharField()
