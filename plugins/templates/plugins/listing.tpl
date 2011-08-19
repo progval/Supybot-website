@@ -24,19 +24,21 @@
 		{% endif %}
 	<div>
 {% endif %}
-{% if page.object_list %}
+{% if plugins %}
 	<table id="plugins">
 		<tr>
 			<th>Name</th>
 			<th>Author</th>
 			<th>Description</th>
+			<th>Ratings</th>
 			<th>Links</th>
 		</tr>
-		{% for plugin in page.object_list %}
+		{% for plugin in plugins %}
 			<tr>
 				<td><a href="{% url plugins_view plugin.name %}">{{ plugin.name }}</a></td>
 				<td>{{ plugin.author }}</td>
 				<td>{% autoescape on %}{{ plugin.short_description }}{% endautoescape %}</td>
+				<td>{{ plugin.score }} ({{ plugin.num_vote }} ratings)</td>
 				<td>
 					{% if plugin.url %}<a href="{{ plugin.url }}">doc</a>{% endif %}
 					{% if plugin.git_repo %}<a href="{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %} ">git</a>{% endif %}

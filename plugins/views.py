@@ -1,10 +1,14 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import SuspiciousOperation
+from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response
 from django.core.context_processors import csrf
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
 from django.http import Http404
+
+from voting.models import Vote
 
 from plugins.models import Plugin, PluginSubmitForm, PluginEditForm
 
@@ -18,18 +22,39 @@ def listing(request, page):
         plugins = paginator.page(page)
     except:
         raise Http404()
-    context = {'page': plugins}
+    plugins = plugins.object_list
+    ratings = Vote.objects.get_scores_in_bulk(plugins)
+    for plugin in plugins:
+        try:
+            pluginData = ratings[plugin]
+        except KeyError:
+            pluginData = {'score': 0, 'num_vote': 0}
+        plugin.score = pluginData['score']
+        plugin.num_vote = pluginData['num_vote']
+    context = {'plugins': plugins}
     return render_to_response('plugins/listing.tpl', context)
 
+@csrf_protect
 def view(request, name):
     plugin = get_object_or_404(Plugin, name=name)
-    context = {'plugin': plugin}
+    if request.method == 'POST' and request.user.is_authenticated():
+        if '-1' in request.POST:
+            Vote.objects.record_vote(plugin, request.user, -1)
+        elif '0' in request.POST:
+            Vote.objects.record_vote(plugin, request.user, 0)
+        elif '+1' in request.POST:
+            Vote.objects.record_vote(plugin, request.user, +1)
+        else:
+            raise SuspiciousOperation('Vote is not -1, 0, or +1.')
+    myVote = Vote.objects.get_for_user(plugin, request.user)
+    context = Vote.objects.get_score(plugin)
+    context.update({'plugin': plugin, 'myvote': myVote})
+    context.update(csrf(request))
     return render_to_response('plugins/view.tpl', context)
 
 @login_required
 def admin_index(request):
     plugins = Plugin.objects.filter(author=request.user)
-    print repr(plugins)
     context = {'plugins': plugins}
     return render_to_response('plugins/admin_index.tpl', context)
 

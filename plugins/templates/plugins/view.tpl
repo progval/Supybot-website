@@ -20,6 +20,30 @@
 
 		<dt>Git repository</dt>
 		<dd>{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %}</dd>
+
+		<hr />
+
+		<dt>Score</dt>
+		<dd>{{ score }}</dd>
+
+		<dt>Number of votes</dt>
+		<dd>{{ num_votes }}</dd>
+
+		<dt>Your vote</dt>
+		<dd>
+			{% if myvote %}
+				<form action="." method="POST">
+					{% csrf_token %}
+					<input type="submit" name="-1" value="-1" {% if myvote.is_downvote %}disabled="disabled"{% endif %} />
+					
+					<input type="submit" name="0" value=" 0 " {% if not myvote.is_downvote and not myvote.is_upvote %}disabled="disabled"{% endif %} />
+					
+					<input type="submit" name="+1" value="+1" {% if myvote.is_upvote %}disabled="disabled"{% endif %} />
+				</form>
+			{% else %}
+				You must be logged in to vote.
+			{% endif %}
+		</dd>
 	</dl>
 	<h1>{% autoescape on %}{{ plugin.name }}{% endautoescape %}</h1>
 	<div id="description">

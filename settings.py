@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'south',
+    'voting',
     'django.contrib.markup',
     'website.root',
     'website.news',
