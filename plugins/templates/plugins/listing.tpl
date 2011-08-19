@@ -9,6 +9,10 @@
 <h1>
 	Latest plugins
 </h1>
+<div id="feeds">
+	<a type="application/rss+xml" href="/plugins/feeds/rss/updates">RSS feed</a><br />
+	<a type="application/atom+xml" href="/plugins/feeds/atom/updates">Atom feed</a>
+</div>
 {% if page.has_other_pages %}
 	<div id="pagination">
 		{% if page.has_previous %}

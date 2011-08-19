@@ -66,6 +66,16 @@ body {
 h1 {
 	text-align: center;
 }
+/******************************************
+ * Link to RSS/Atom feeds
+ ******************************************/
+#feeds {
+	text-align: right;
+	background-image: url("/static/feed.png");
+	background-repeat: no-repeat;
+	background-position: right;
+	padding-right: 20px;
+}
 
 /******************************************
  * Form-related

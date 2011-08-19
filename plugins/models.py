@@ -18,6 +18,7 @@ class Plugin(models.Model):
             'Supybot version compatible with this plugin.', default='0.83.4.1')
 
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False, help_text='Determines '
             'whether or not the plugin can be seen by everyone.')
 

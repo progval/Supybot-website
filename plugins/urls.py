@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 
+from plugins import feeds
+
 charClass = '[a-zA-Z0-9]+'
 
 urlpatterns = patterns('website.plugins.views',
@@ -9,5 +11,8 @@ urlpatterns = patterns('website.plugins.views',
     url(r'^admin/$',                       'admin_index', name='plugins_admin_index'),
     url(r'^admin/(?P<name>%s)/$'%charClass,'admin_form', name='plugins_admin_form'),
     url(r'^submit/$',                      'submit', name='plugins_submit'),
+
+    (r'^feeds/rss/updates/$',              feeds.LatestPluginUpdatesRssFeed()),
+    (r'^feeds/atom/updates/$',             feeds.LatestPluginUpdatesAtomFeed()),
 )
 
