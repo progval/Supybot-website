@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import SuspiciousOperation
 from django.contrib.auth import logout as logout_dj
 from django.contrib.auth import login as login_dj
 from django.core.context_processors import csrf
@@ -84,6 +85,8 @@ def register(request):
     elif request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            if 'honey' not in request.POST or request.POST.get('honey') != 'pot':
+                raise SuspiciousOperation()
             if form.cleaned_data['password'] != form.cleaned_data['password2']:
                 context = {'form': form,
                         'error': 'The passwords do not match.'}

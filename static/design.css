@@ -66,6 +66,10 @@ body {
 h1 {
 	text-align: center;
 }
+.honey { /* honeypot */
+	display: none;
+}
+
 /******************************************
  * Link to RSS/Atom feeds
  ******************************************/
