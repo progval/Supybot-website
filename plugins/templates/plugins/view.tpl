@@ -31,7 +31,7 @@
 
 		<dt>Your vote</dt>
 		<dd>
-			{% if myvote %}
+			{% if user.is_authenticated %}
 				<form action="." method="POST">
 					{% csrf_token %}
 					<input type="submit" name="-1" value="-1" {% if myvote.is_downvote %}disabled="disabled"{% endif %} />
@@ -41,7 +41,7 @@
 					<input type="submit" name="+1" value="+1" {% if myvote.is_upvote %}disabled="disabled"{% endif %} />
 				</form>
 			{% else %}
-				You must be logged in to vote.
+				You must be <a href="{% url users_login %}">logged in</a> to vote.
 			{% endif %}
 		</dd>
 	</dl>

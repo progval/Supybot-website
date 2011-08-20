@@ -48,7 +48,7 @@ def view(request, name):
             raise SuspiciousOperation('Vote is not -1, 0, or +1.')
     myVote = Vote.objects.get_for_user(plugin, request.user)
     context = Vote.objects.get_score(plugin)
-    context.update({'plugin': plugin, 'myvote': myVote})
+    context.update({'plugin': plugin, 'myvote': myVote, 'user': request.user})
     context.update(csrf(request))
     return render_to_response('plugins/view.tpl', context)
 
