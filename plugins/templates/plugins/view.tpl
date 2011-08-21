@@ -1,4 +1,5 @@
 {% extends "base.tpl" %}
+{% load heading %}
 {% load markup %}
 
 {% block body %}
@@ -55,12 +56,15 @@
 	<ul id="comments">
 		{% for comment in comments %}
 			<li {% ifequal comment.user user %}class="mycomment"{% endifequal %}>
-				<h2>
-				<a name="comm-{{ forloop.counter }}"></a>
-				Comment <a href="#comm-{{ forloop.counter }}">#{{ forloop.counter }}</a>
-				by {{ comment.user }} at {{ comment.created_date }}
-				</h2>
-				{% autoescape on %}{{ comment.text|linebreaks }}{% endautoescape %}
+				<dl>
+					<dt>
+					<a name="comm-{{ forloop.counter }}"></a>
+					Comment <a href="#comm-{{ forloop.counter }}">#{{ forloop.counter }}</a>
+					by {{ comment.user }} at {{ comment.created_date }}
+				</dt>
+				<dd>
+					{% headingcontext target_level=2 %}{{ comment.text|markdown:"safe" }}{% endheadingcontext %}
+				</dd>
 			</li>
 		{% endfor %}
 	</ul>
