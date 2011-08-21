@@ -249,3 +249,31 @@ table#plugins tr th {
 .saved {
 	background-color: #AAFFAA;
 }
+
+/******************************************
+ * Comments
+ ******************************************/
+ul#comments {
+	border: 1px solid #A0A0FF;
+	margin: 0;
+	margin-top: 10px;
+	list-style-type: none;
+	padding: 0;
+}
+ul#comments li {
+	margin: 2px;
+	padding: 2px;
+	border: 1px solid #A0A0FF;
+}
+ul#comments li h2 {
+	font-size: 1em;
+}
+ul#comments li h1 {
+	text-align: left;
+}
+#comment_form {
+	margin: 0;
+	margin-top: 10px;
+	padding: 5px
+	border: 1px solid #A0A0FF;
+}

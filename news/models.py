@@ -28,3 +28,9 @@ class News (models.Model):
     class Meta:
         verbose_name_plural = 'News'
         ordering = ['-created_at']
+
+class NewsComment(models.Model):
+    key = models.ForeignKey(News)
+    user = models.ForeignKey(User)
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
