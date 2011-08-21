@@ -265,6 +265,9 @@ ul#comments li {
 	padding: 2px;
 	border: 1px solid #A0A0FF;
 }
+ul#comments li.mycomment {
+	border: 1px solid yellow;
+}
 ul#comments li h2 {
 	font-size: 1em;
 }
@@ -276,4 +279,10 @@ ul#comments li h1 {
 	margin-top: 10px;
 	padding: 5px
 	border: 1px solid #A0A0FF;
+	width: 100%;
+	text-align: center;
+}
+#comment_form textarea {
+	min-width: 50%;
+	min-height: 200px;
 }

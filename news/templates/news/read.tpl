@@ -24,7 +24,7 @@
 {% if comments %}
 	<ul id="comments">
 		{% for comment in comments %}
-			<li>
+			<li {% ifequal comment.user user %}class="mycomment"{% endifequal %}>
 				<h2>
 				<a name="comm-{{ forloop.counter }}"></a>
 				Comment <a href="#comm-{{ forloop.counter }}">#{{ forloop.counter }}</a>
@@ -36,8 +36,7 @@
 	</ul>
 {% endif %}
 {% if user.is_authenticated %}
-	<form action="." method="post" id="comment_form" 
-		onSubmit="ajaxSendComment(); return false;"> 
+	<form action="." method="post" id="comment_form">
 		<h2>Leave a comment</h2>
 		{% csrf_token %}
 		<textarea name="text"></textarea>
