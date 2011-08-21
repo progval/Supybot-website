@@ -42,7 +42,7 @@ class PluginCommentForm(ModelForm):
 
 @csrf_protect
 def view(request, name):
-    plugin = get_object_or_404(Plugin, name=name)
+    plugin = get_object_or_404(Plugin, name=name, published=True)
     if request.method == 'POST' and request.user.is_authenticated():
         if '-1' in request.POST:
             Vote.objects.record_vote(plugin, request.user, -1)

@@ -30,7 +30,7 @@ class NewsCommentForm(ModelForm):
 
 @csrf_protect
 def read(request, slug):
-    news = get_object_or_404(News, slug=slug)
+    news = get_object_or_404(News, slug=slug, published=True)
     if request.method == 'POST':
         assert request.user.is_authenticated()
         form = NewsCommentForm(request.POST)
