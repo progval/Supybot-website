@@ -42,3 +42,9 @@ class PluginSubmitForm(forms.ModelForm):
 class PluginEditForm(PluginSubmitForm):
     class Meta(PluginSubmitForm.Meta):
         exclude = ('name',)
+
+class PluginComment(models.Model):
+    key = models.ForeignKey(Plugin)
+    user = models.ForeignKey(User)
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)

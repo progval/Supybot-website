@@ -6,11 +6,12 @@ from django.core.context_processors import csrf
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
+from django.forms import ModelForm
 from django.http import Http404
 
 from voting.models import Vote
 
-from plugins.models import Plugin, PluginSubmitForm, PluginEditForm
+from plugins.models import Plugin, PluginSubmitForm, PluginEditForm, PluginComment
 
 def index(request):
     return redirect(listing, 1)
@@ -34,6 +35,11 @@ def listing(request, page):
     context = {'plugins': plugins}
     return render_to_response('plugins/listing.tpl', context)
 
+class PluginCommentForm(ModelForm):
+    class Meta:
+        model = PluginComment
+        fields = ('text',)
+
 @csrf_protect
 def view(request, name):
     plugin = get_object_or_404(Plugin, name=name)
@@ -45,10 +51,19 @@ def view(request, name):
         elif '+1' in request.POST:
             Vote.objects.record_vote(plugin, request.user, +1)
         else:
-            raise SuspiciousOperation('Vote is not -1, 0, or +1.')
+            form = PluginCommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.key = plugin
+                comment.user = request.user
+                comment.save()
     myVote = Vote.objects.get_for_user(plugin, request.user)
     context = Vote.objects.get_score(plugin)
-    context.update({'plugin': plugin, 'myvote': myVote, 'user': request.user})
+    # Fetch the comments after posting this one.
+    comments = PluginComment.objects.filter(key=plugin)
+
+    context.update({'plugin': plugin, 'myvote': myVote, 'user': request.user,
+        'comments': comments})
     context.update(csrf(request))
     return render_to_response('plugins/view.tpl', context)
 
