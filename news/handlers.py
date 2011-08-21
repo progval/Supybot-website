@@ -18,6 +18,7 @@ class NewsHandler(BaseHandler):
 class NewsCommentHandler(BaseHandler):
     allowed_methodes = ('GET',)
     model = NewsComment
+    fields = ('text', 'user', ('key', ('slug',)), 'created_date')
     def read(self, request, slug=None):
         news = News.objects.get(slug=slug, published=True)
         return NewsComment.objects.filter(key=news)
