@@ -179,9 +179,12 @@ def autoimport_repo(request, name):
                 pass
             plugin_path = os.path.join(path, name)
             try:
-                readme = open(os.path.join(plugin_path, 'README'), 'r').read()
+                readme = open(os.path.join(plugin_path, 'README.txt'), 'r').read()
             except IOError:
-                readme = 'This plugin has no description.'
+                try:
+                    readme = open(os.path.join(plugin_path, 'README'), 'r').read()
+                except:
+                    readme = 'This plugin has no description.'
             plugin = Plugin(
                     author=request.user,
                     name=name,
