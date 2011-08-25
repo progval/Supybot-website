@@ -22,6 +22,8 @@ from plugins.models import GitRepository, GitRepositoryForm
 from plugins.models import PluginComment
 from plugins import daemons
 
+from settings import MEDIA_ROOT
+
 plugin_matcher = re.compile('[A-Z][A-Za-z0-9]+')
 
 def index(request):
@@ -160,7 +162,7 @@ def autoimport_index(request):
 @csrf_protect
 def autoimport_repo(request, name):
     repo = get_object_or_404(GitRepository, name=name)
-    path = '%s/media/repositories/%s' % (os.getcwd(), repo.name)
+    path = os.path.join(MEDIA_ROOT, 'repositories', repo.name)
     if request.method == "POST":
         checkbox_prefix = 'import_plugin_'
         plugins = []
@@ -226,7 +228,7 @@ def autoimport_delrepo(request, name):
         return HttpResponseForbidden()
     assert '.' not in name
     assert '/' not in name
-    assert os.system('rm -Rf %s/media/repositories/%s.git' % \
-            (os.getcwd(), name)) == 0
+    assert os.system('rm -Rf %s' % os.path.join(MEDIA_ROOT, 'repositories',
+            '%s.git' % name)) == 0
     repo.delete()
     return redirect(autoimport_index)
