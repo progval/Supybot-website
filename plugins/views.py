@@ -96,7 +96,7 @@ def admin_form(request, name):
         form = PluginEditForm(request.POST, instance=plugin)
         if form.is_valid():
             form.save()
-            saved = True
+            return redirect(admin_index)
     if form is None:
         form = PluginEditForm(instance=plugin)
     context = {'form': form, 'saved': saved, 'plugin': plugin}
