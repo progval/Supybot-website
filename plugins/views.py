@@ -121,6 +121,8 @@ def submit(request):
 # Threads in which "git clone" is running.
 clone_threads = {}
 
+repo_name_matcher = re.compile('[A-Za-z0-9_-]+')
+
 @login_required
 @csrf_protect
 def autoimport_index(request):
@@ -128,9 +130,7 @@ def autoimport_index(request):
     if request.method == "POST":
         form = GitRepositoryForm(request.POST)
         if form.is_valid():
-            if '.' in form.cleaned_data['name'] or '/' in form.cleaned_data['name']:
-                form._errors.update({'name': ('. and / are not allowed in this field.',)})
-            elif form.cleaned_data['url'].startswith('git://'):
+            if form.cleaned_data['url'].startswith('git://'):
                 repo = form.save(commit=False)
                 repo.maintainer = request.user
                 repo.state = 'c'
