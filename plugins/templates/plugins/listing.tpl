@@ -3,8 +3,10 @@
 
 {% block body %}
 <div class="goto_admin">
+	For plugin developpers:<br />
 	<a href="{% url plugins_admin_index %}">Administrate your plugins</a><br />
-	<a href="{% url plugins_submit %}">Submit your plugins</a>
+	<a href="{% url plugins_submit %}">Submit your plugins</a><br />
+	<a href="{% url plugins_autoimport %}">Auto-import plugins from Git repo</a>
 </div>
 <h1>
 	Latest plugins
@@ -45,7 +47,7 @@
 				</td>
 			</tr>
 		{% endfor %}
-	</ul>
+	</table>
 {% else %}
 	<div class="error no-item-on-page">
 		Sorry, no plugins published at the moment.

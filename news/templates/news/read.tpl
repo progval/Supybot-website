@@ -37,7 +37,7 @@
 				</dd>
 			</li>
 		{% endfor %}
-	</ul>
+	</table>
 {% endif %}
 {% if user.is_authenticated %}
 	<form action="." method="post" id="comment_form">

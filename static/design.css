@@ -79,6 +79,8 @@ h1 {
 	background-repeat: no-repeat;
 	background-position: right;
 	padding-right: 20px;
+	clear: both;
+	margin-bottom: 5px;
 }
 
 /******************************************
@@ -213,15 +215,15 @@ table.form .errorlist {
 /******************************************
  * Plugins
  ******************************************/
-table#plugins {
+table#plugins, table#repositories {
 	width: 100%;
 	border-collapse: collapse;
 }
-table#plugins tr th, table#plugins tr td {
+table#plugins tr th, table#plugins tr td, table#repositories tr th, table#repositories tr td {
 	border: 1px solid black;
 	text-align: center;
 }
-table#plugins tr th {
+table#plugins tr th, table#repositories tr th {
 	background-color: #DDDDFF;
 }
 #plugin {
@@ -244,10 +246,28 @@ table#plugins tr th {
 .goto_admin {
 	float: right;
 	display: inline-block;
-	text-align: right;
+	text-align: center;
+	border: 1px solid black;
+	padding: 2px;
+	margin-bottom: 5px;
+}
+.goto_admin:first-line {
+	font-weight: bold;
 }
 .saved {
 	background-color: #AAFFAA;
+}
+#new_repo {
+	border: 1px solid black;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#new_repo tr td input.submit {
+	width: 100%;
+}
+#new_repo tr td ul.errorlist {
+	padding: 2px;
 }
 
 /******************************************

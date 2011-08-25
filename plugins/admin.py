@@ -1,3 +1,4 @@
+from plugins.models import GitRepository
 from plugins.models import Plugin
 from django.contrib import admin
 
@@ -14,3 +15,7 @@ class PluginAdmin(admin.ModelAdmin):
 
 admin.site.register(Plugin, PluginAdmin)
 
+class GitRepositoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'maintainer')
+
+admin.site.register(GitRepository, GitRepositoryAdmin)

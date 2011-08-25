@@ -3,7 +3,9 @@
 
 {% block body %}
 <div class="goto_admin">
-	<a href="{% url plugins_submit %}">Submit your plugins</a>
+	Import plugins<br />
+	<a href="{% url plugins_submit %}">Submit your plugins</a><br />
+	<a href="{% url plugins_autoimport %}">Auto-import plugins from Git repo</a>
 </div>
 <h1>
 	Your plugins
