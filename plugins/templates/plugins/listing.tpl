@@ -3,18 +3,20 @@
 
 {% block body %}
 <div class="goto_admin">
-	For plugin developpers:<br />
-	<a href="{% url plugins_admin_index %}">Administrate your plugins</a><br />
-	<a href="{% url plugins_submit %}">Submit your plugins</a><br />
-	<a href="{% url plugins_autoimport %}">Auto-import plugins from Git repo</a>
+	For plugin developpers:
+	<ul>
+		<li><a href="{% url plugins_admin_index %}">Administrate your plugins</a></li>
+		<li><a href="{% url plugins_submit %}">Submit your plugins</a></li>
+		<li><a href="{% url plugins_autoimport %}">Auto-import plugins from Git repo</a></li>
+	</ul>
 </div>
 <h1>
 	Latest plugins
 </h1>
-<div id="feeds">
-	<a type="application/rss+xml" href="/plugins/feeds/rss/updates">RSS feed</a><br />
-	<a type="application/atom+xml" href="/plugins/feeds/atom/updates">Atom feed</a>
-</div>
+<ul id="feeds">
+	<li><a type="application/rss+xml" href="/plugins/feeds/rss/updates">RSS feed</a></li>
+	<li><a type="application/atom+xml" href="/plugins/feeds/atom/updates">Atom feed</a></li>
+</ul>
 {% if page.has_other_pages %}
 	<div id="pagination">
 		{% if page.has_previous %}

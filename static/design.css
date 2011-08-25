@@ -81,6 +81,8 @@ h1 {
 	padding-right: 20px;
 	clear: both;
 	margin-bottom: 5px;
+	list-style-type: none;
+	padding-left: 0;
 }
 
 /******************************************
@@ -106,6 +108,7 @@ table.form td td .errorlist {
 }
 table.form tr td input, table.form tr td textarea {
 	width: 100%;
+	margin: auto;
 	text-align: left;
 }
 table.form tr td input[type=button], table.form tr td input[type=submit] {
@@ -250,9 +253,12 @@ table#plugins tr th, table#repositories tr th {
 	border: 1px solid black;
 	padding: 2px;
 	margin-bottom: 5px;
-}
-.goto_admin:first-line {
 	font-weight: bold;
+}
+.goto_admin ul {
+	list-style-type: none;
+	font-weight: normal;
+	padding: 0;
 }
 .saved {
 	background-color: #AAFFAA;
