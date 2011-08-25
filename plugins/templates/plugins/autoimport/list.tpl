@@ -10,20 +10,21 @@
 	<table id="plugins">
 		<tr>
 			<th>Name</th>
+			<th>Import?</th>
 			<th>Already in the database?</th>
 			<th>By you?</th>
-			<th>Import?</th>
 		</tr>
 		{% for plugin in plugins %}
 			<tr>
-				<td>{{ plugin.name }}</td>
 				{% if plugin.in_database %}
+					<td>{{ plugin.name }}</td>
+					<td><input type="checkbox" name="import_plugin_{{ plugin.name }}" disabled="disabled" /></td>
 					<td>Yes</td>
 					<td>{% if plugin.in_database.author = user %}Yes{% else %}No{% endif %}</td>
-					<td><input type="checkbox" name="import_plugin_{{ plugin.name }}" disabled="disabled" /></td>
 				{% else %}
-					<td colspan="2">No</td>
+					<td>{{ plugin.name }}</td>
 					<td><input type="checkbox" name="import_plugin_{{ plugin.name }}" /></td>
+					<td colspan="2">No</td>
 				{% endif %}
 			</tr>
 		{% endfor %}
