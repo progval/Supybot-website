@@ -188,7 +188,7 @@ def autoimport_repo(request, name):
             plugin = Plugin(
                     author=request.user,
                     name=name,
-                    short_description=readme[0:511],
+                    short_description=readme[0:511].split('\n\n')[0],
                     description=readme,
                     git_repo=repo.url)
             plugins.append(plugin)
