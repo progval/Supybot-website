@@ -209,7 +209,7 @@ def autoimport_repo(request, name):
             plugin = Container()
             plugin.name = item
             try:
-                plugin.in_database = Plugin.objects.filter(name=name).get()
+                plugin.in_database = Plugin.objects.filter(name=item).get()
             except ObjectDoesNotExist:
                 pass
             plugins.append(plugin)

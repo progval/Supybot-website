@@ -19,7 +19,7 @@
 				<td>{{ plugin.name }}</td>
 				{% if plugin.in_database %}
 					<td>Yes</td>
-					<td>{% if plugin.in_database.user = user %}Yes{% else %}No{% endif %}</td>
+					<td>{% if plugin.in_database.author = user %}Yes{% else %}No{% endif %}</td>
 					<td><input type="checkbox" name="import_plugin_{{ plugin.name }}" disabled="disabled" /></td>
 				{% else %}
 					<td colspan="2">No</td>
