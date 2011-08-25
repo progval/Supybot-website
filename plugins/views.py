@@ -162,7 +162,7 @@ def autoimport_index(request):
 @csrf_protect
 def autoimport_repo(request, name):
     repo = get_object_or_404(GitRepository, name=name)
-    path = os.path.join(MEDIA_ROOT, 'repositories', repo.name)
+    path = os.path.join(MEDIA_ROOT, 'repositories', '%s' % repo.name)
     if request.method == "POST":
         checkbox_prefix = 'import_plugin_'
         plugins = []
@@ -229,6 +229,6 @@ def autoimport_delrepo(request, name):
     assert '.' not in name
     assert '/' not in name
     assert os.system('rm -Rf %s' % os.path.join(MEDIA_ROOT, 'repositories',
-            '%s.git' % name)) == 0
+        name)) == 0
     repo.delete()
     return redirect(autoimport_index)
