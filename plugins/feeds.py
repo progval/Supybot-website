@@ -8,7 +8,7 @@ class LatestPluginUpdatesRssFeed(Feed):
     description = 'Latest updates of plugins at Supybot website.'
 
     def items(self):
-        return Plugin.objects.order_by('-updated_at')[:10]
+        return Plugin.objects.filter(published=True).order_by('-updated_at')[:10]
 
 class LatestPluginUpdatesAtomFeed(LatestPluginUpdatesRssFeed):
     feed_type = Atom1Feed
