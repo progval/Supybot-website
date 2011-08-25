@@ -8,7 +8,7 @@
 		<dt>Author</dt>
 		<dd>{{ plugin.author }}</dd>
 
-		<dt>Minimal version</dt>
+		<dt>Minimal Supybot version</dt>
 		<dd>{% autoescape on %}{{ plugin.minimal_version }}{% endautoescape %}</dd>
 
 		<dt>Created at</dt>
@@ -23,6 +23,11 @@
 		<dd>{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %}</dd>
 
 		<hr />
+
+		{% if user = plugin.author %}
+			<a href="{% url plugins_admin_form plugin.name %}">Edit this plugin.</a>
+			<hr />
+		{% endif %}
 
 		<dt>Score</dt>
 		<dd>{{ score }}</dd>
