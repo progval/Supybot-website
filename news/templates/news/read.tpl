@@ -4,7 +4,7 @@
 
 {% block body %}
 <div id="news">
-	<dl id="metadata">
+	<dl class="metadata">
 		<dt>Author</dt>
 		<dd>{{ news.author }}</dd>
 
@@ -28,16 +28,17 @@
 			<li {% ifequal comment.user user %}class="mycomment"{% endifequal %}>
 				<dl>
 					<dt>
-					<a name="comm-{{ forloop.counter }}"></a>
-					Comment <a href="#comm-{{ forloop.counter }}">#{{ forloop.counter }}</a>
-					by {{ comment.user }} at {{ comment.created_date }}
-				</dt>
-				<dd>
-					{% headingcontext target_level=2 %}{{ comment.text|markdown:"safe" }}{% endheadingcontext %}
-				</dd>
+						<a name="comm-{{ forloop.counter }}"></a>
+						Comment <a href="#comm-{{ forloop.counter }}">#{{ forloop.counter }}</a>
+						by {{ comment.user }} at {{ comment.created_date }}
+					</dt>
+					<dd>
+						{% headingcontext target_level=2 %}{{ comment.text|markdown:"safe" }}{% endheadingcontext %}
+					</dd>
+				</dl>
 			</li>
 		{% endfor %}
-	</table>
+	</ul>
 {% endif %}
 {% if user.is_authenticated %}
 	<form action="." method="post" id="comment_form">

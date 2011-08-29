@@ -186,14 +186,14 @@ table.form .errorlist {
 #news {
 	border: 1px solid #A0A0FF;
 }
-#news dl#metadata {
+#news dl.metadata {
 	margin: 5px;
 	padding: 0;
 	float: right;
 	display: inline-block;
 	border: 1px solid black;
 }
-#news dl#metadata dt:after {
+#news dl.metadata dt:after {
 	content: ":";
 }
 #news #content h1, #news #content h2 {
@@ -232,14 +232,14 @@ table#plugins tr th, table#repositories tr th {
 #plugin {
 	border: 1px solid #A0A0FF;
 }
-#plugin dl#metadata {
+#plugin dl.metadata {
 	margin: 5px;
 	padding: 0;
 	float: right;
 	display: inline-block;
 	border: 1px solid black;
 }
-#plugin dl#metadata dt:after {
+#plugin dl.metadata dt:after {
 	content: ":";
 }
 #plugin #description h1, #news #description h2 {

@@ -4,7 +4,7 @@
 
 {% block body %}
 <div id="plugin">
-	<dl id="metadata">
+	<dl class="metadata">
 		<dt>Author</dt>
 		<dd>{{ plugin.author }}</dd>
 
@@ -21,13 +21,14 @@
 
 		<dt>Git repository</dt>
 		<dd>{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %}</dd>
-
-		<hr />
+	</dl>
 
 		{% if user = plugin.author %}
-			<a href="{% url plugins_admin_form plugin.name %}">Edit this plugin.</a>
-			<hr />
+			<dl class="metadata">
+				<a href="{% url plugins_admin_form plugin.name %}">Edit this plugin.</a>
+			</dl>
 		{% endif %}
+	<dl class="metadata">
 
 		<dt>Score</dt>
 		<dd>{{ score }}</dd>

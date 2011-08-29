@@ -64,6 +64,9 @@ class GitRepository(models.Model):
         ('w', 'working'),
         ('n', 'not initialized')))
 
+    def __unicode__(self):
+        return self.name
+
     class Meta:
         verbose_name_plural = 'Git repositories'
 
