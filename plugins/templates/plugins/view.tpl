@@ -4,54 +4,59 @@
 
 {% block body %}
 <div id="plugin">
-	<dl class="metadata">
-		<dt>Author</dt>
-		<dd>{{ plugin.author }}</dd>
+	<div id="metadata">
+		<dl>
+			<dt>Author</dt>
+			<dd>{{ plugin.author }}</dd>
 
-		<dt>Minimal Supybot version</dt>
-		<dd>{% autoescape on %}{{ plugin.minimal_version }}{% endautoescape %}</dd>
+			<dt>Minimal Supybot version</dt>
+			<dd>{% autoescape on %}{{ plugin.minimal_version }}{% endautoescape %}</dd>
 
-		<dt>Created at</dt>
-		<dd>{{ plugin.created_at }}</dd>
+			<dt>Created at</dt>
+			<dd>{{ plugin.created_at }}</dd>
 
-		{% if plugin.url %}
-			<dt>Website</dt>
-			<dd><a href="plugin.url">{{ plugin.url }}</a></dd>
-		{% endif %}
-
-		<dt>Git repository</dt>
-		<dd>{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %}</dd>
-	</dl>
-
-		{% if user = plugin.author %}
-			<dl class="metadata">
-				<a href="{% url plugins_admin_form plugin.name %}">Edit this plugin.</a>
-			</dl>
-		{% endif %}
-	<dl class="metadata">
-
-		<dt>Score</dt>
-		<dd>{{ score }}</dd>
-
-		<dt>Number of votes</dt>
-		<dd>{{ num_votes }}</dd>
-
-		<dt>Your vote</dt>
-		<dd>
-			{% if user.is_authenticated %}
-				<form action="." method="POST">
-					{% csrf_token %}
-					<input type="submit" name="-1" value="-1" {% if myvote.is_downvote %}disabled="disabled"{% endif %} />
-					
-					<input type="submit" name="0" value=" 0 " {% if not myvote.is_downvote and not myvote.is_upvote %}disabled="disabled"{% endif %} />
-					
-					<input type="submit" name="+1" value="+1" {% if myvote.is_upvote %}disabled="disabled"{% endif %} />
-				</form>
-			{% else %}
-				You must be <a href="{% url users_login %}">logged in</a> to vote.
+			{% if plugin.url %}
+				<dt>Website</dt>
+				<dd><a href="plugin.url">{{ plugin.url }}</a></dd>
 			{% endif %}
-		</dd>
-	</dl>
+
+			<dt>Git repository</dt>
+			<dd>{% autoescape on %}{{ plugin.git_repo }}{% endautoescape %}</dd>
+		</dl>
+		<hr />
+
+			{% if user = plugin.author %}
+				<a href="{% url plugins_admin_form plugin.name %}">Edit this plugin.</a>
+				<hr />
+			{% endif %}
+		<dl>
+
+			<dt>Score</dt>
+			<dd>{{ score }}</dd>
+
+			<dt>Number of votes</dt>
+			<dd>{{ num_votes }}</dd>
+
+			<dt>Your vote</dt>
+			<dd>
+				{% if user.is_authenticated %}
+					<form action="." method="post">
+						<div>
+							{% csrf_token %}
+							<input type="submit" name="-1" value="-1" {% if myvote.is_downvote %}disabled="disabled"{% endif %} />
+
+							<input type="submit" name="0" value=" 0 " {% if not myvote.is_downvote and not myvote.is_upvote %}disabled="disabled"{% endif %} />
+
+							<input type="submit" name="+1" value="+1" {% if myvote.is_upvote %}disabled="disabled"{% endif %} />
+						</div>
+					</form>
+				{% else %}
+					You must be <a href="{% url users_login %}">logged in</a> to vote.
+				{% endif %}
+			</dd>
+		</dl>
+	</div>
+
 	<h1>{% autoescape on %}{{ plugin.name }}{% endautoescape %}</h1>
 	<div id="description">
 		{{ plugin.description|markdown:"safe" }}

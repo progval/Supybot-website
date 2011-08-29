@@ -4,16 +4,18 @@
 
 {% block body %}
 <div id="news">
-	<dl class="metadata">
-		<dt>Author</dt>
-		<dd>{{ news.author }}</dd>
+	<div id="metadata">
+		<dl>
+			<dt>Author</dt>
+			<dd>{{ news.author }}</dd>
 
-		<dt>Created at</dt>
-		<dd>{{ news.created_at }}</dd>
+			<dt>Created at</dt>
+			<dd>{{ news.created_at }}</dd>
 
-		<dt>Last update at</dt>
-		<dd>{{ news.updated_at }}</dd>
-	</dl>
+			<dt>Last update at</dt>
+			<dd>{{ news.updated_at }}</dd>
+		</dl>
+	</div>
 	<h1>
 		{{ news.title }}
 	</h1>
