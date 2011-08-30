@@ -2,7 +2,7 @@ In order to deploy this website on a Debian host, you have to run this
 commands as root:
 aptitude install python-django python-django-piston python-markdown \
 	python-django-voting python-django-south python-setuptools \
-	mysql-server python-mysqldb
+	mysql-server python-mysqldb python-django-mptt
 easy_install django-templateaddons
 
 Then, configure yourself the WSGI server. You can use this sample Apache
