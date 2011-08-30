@@ -5,6 +5,8 @@ from dpaste.models import Snippet
 from dpaste.highlight import LEXER_LIST_ALL, LEXER_LIST, LEXER_DEFAULT
 import datetime
 
+from settings import PASTE_CHANNELS
+
 #===============================================================================
 # Snippet Form and Handling
 #===============================================================================
@@ -20,9 +22,7 @@ EXPIRE_DEFAULT = 3600*24*30
 
 class SnippetForm(forms.ModelForm):
     announce = forms.ChoiceField(
-            choices=(('none', '-- none --'),
-                    ('#progval', '#progval'),
-                    ('#limnoria', '#limnoria')),
+            choices=PASTE_CHANNELS,
             initial='-- none --',
             label='Announce on channel',
     )

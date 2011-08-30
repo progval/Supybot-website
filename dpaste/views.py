@@ -13,7 +13,7 @@ import difflib
 from django.shortcuts import redirect
 import requests
 
-from localsettings import PASTE_BASE_URL
+from settings import PASTE_BASE_URL
 
 def snippet_new(request, template_name='dpaste/snippet_new.html'):
 
