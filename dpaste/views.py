@@ -26,7 +26,7 @@ def snippet_new(request, template_name='dpaste/snippet_new.html'):
             snippet_form.save()
             if request.POST.get('announce') != 'none':
                 try:
-                    requests.post(PASTE_BASE_URL = '/website/', data={
+                    requests.post(PASTE_BASE_URL + '/website/', data={
                             'author': str(new_snippet.author),
                             'id': str(new_snippet.secret_id),
                             'channel': str(request.POST.get('announce')),
