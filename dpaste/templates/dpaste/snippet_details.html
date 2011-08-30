@@ -35,7 +35,7 @@
         <abbr title="{% trans "Time to life" %}">TTL:</abbr> {{ snippet.expires|timeuntil  }}
         &mdash;
         {% if snippet.pk|in_list:request.session.snippet_list %}
-        <a onclick="return confirm('{% trans "Really delete this snippet?" %}')" href="{% url snippet_delete snippet.secret_id %}">Delete now!</a>
+        <a onclick="return confirm('{% trans "Really delete this snippet?" %}')" href="{% url dpaste_snippet_delete snippet.secret_id %}">Delete now!</a>
         &mdash;
         {% endif %}
         <a id="toggleWordwrap" href="#">{% trans "Wordwrap" %}</a>
@@ -49,17 +49,15 @@
         <div class="snippet">
         <table>
             <tr>
-                <th><pre class="code">{% for l in lines %}<a href="#l{{ forloop.counter }}" id="l{{ forloop.counter }}">{{ forloop.counter }}</a>{% endfor %}</pre></th>
-                <td><pre class="code">{% for line in snippet.content_splitted %}<div class="line" id="l{{ forloop.counter }}">{% if line %}{{ line|safe }}{% else %}&nbsp;{% endif %}</div>{% endfor %}</pre></td>
+		<th><pre class="code">{% for l in lines %}<br /><a href="#l{{ forloop.counter }}" id="l{{ forloop.counter }}">{{ forloop.counter }}</a>{% endfor %}</pre></th>
+                <td><pre class="code highlight">{% for line in snippet.content_splitted %}<div class="line" id="l{{ forloop.counter }}">{% if line %}{{ line|safe }}{% else %}&nbsp;{% endif %}</div>{% endfor %}</pre></td>
             </tr>
         </table>
         </div>
     </div>
 
     <h2>{% trans "Write an answer" %} &rarr;</h2>
-    <div class="container" style="display: none;">
-        {% include "dpaste/snippet_form.html" %}
-    </div>
+	{% include "dpaste/snippet_form.html" %}
 </div>
 {% endblock %}
 
@@ -68,7 +66,7 @@
 {% block sidebar %}
     <h2>{% trans "History" %}</h2>
 
-    <form method="get" id="diffform" action="{% url snippet_diff %}">
+    <form method="get" id="diffform" action="{% url dpaste_snippet_diff %}">
     <div class="tree">
         {% for tree_item,structure in tree|tree_info %}
         {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
@@ -92,7 +90,7 @@
     </form>
 
     <h2>{% trans "Options" %}</h2>
-    <p><a href="{% url snippet_details_raw snippet.secret_id %}">{% trans "View raw" %}</a></p>
+    <p><a href="{% url dpaste_snippet_details_raw snippet.secret_id %}">{% trans "View raw" %}</a></p>
 {% endblock %}
 
 {% block script_footer %}
@@ -117,7 +115,7 @@ jQuery(document).ready(function(){
     * Diff Ajax Call
     */
     $("form#diffform").submit(function() {
-        $.get("{% url snippet_diff %}", {
+        $.get("{% url dpaste_snippet_diff %}", {
             a: $("input[name=a]:checked").val(),
             b: $("input[name=b]:checked").val()
         }, function(data){
@@ -156,7 +154,7 @@ jQuery(document).ready(function(){
     * Lexer Guessing
     */
     $('#guess_lexer_btn').click(function(){
-        $.getJSON('{% url snippet_guess_lexer %}',
+        $.getJSON('{% url dpaste_snippet_guess_lexer %}',
             {'codestring': $('#id_content').val()},
             function(data){
                 if(data.lexer == "unknown"){

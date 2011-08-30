@@ -13,6 +13,8 @@ This website is powered by the <a href="http://python.org/">Python</a> scripting
 language, the <a href="https://www.djangoproject.com/">Django</a> Web
 framework, and is hosted on a <a href="http://debian.org/">Debian GNU/Linux</a>
 server.
+The engine that powers the paste system is a modified version of
+<a href="https://github.com/bartTC/django-paste">Dpaste</a>.
 </p>
 <p>
 The website itself is written by ProgVal, and its source code is available at

@@ -10,13 +10,30 @@ from dpaste.highlight import pygmentize, guess_code_lexer
 from django.core.urlresolvers import reverse
 from django.utils import simplejson
 import difflib
+from django.shortcuts import redirect
+import requests
+
+from localsettings import PASTE_BASE_URL
 
 def snippet_new(request, template_name='dpaste/snippet_new.html'):
 
     if request.method == "POST":
         snippet_form = SnippetForm(data=request.POST, request=request)
         if snippet_form.is_valid():
-            request, new_snippet = snippet_form.save()
+            request, new_snippet = snippet_form.save(commit=False)
+            # Even if the user is not authenticated
+            new_snippet.author = request.user
+            snippet_form.save()
+            if request.POST.get('announce') != 'none':
+                try:
+                    requests.post(PASTE_BASE_URL = '/website/', data={
+                            'author': str(new_snippet.author),
+                            'id': str(new_snippet.secret_id),
+                            'channel': str(request.POST.get('announce')),
+                            'name': str(new_snippet.title),
+                            })
+                except:
+                    pass
             return HttpResponseRedirect(new_snippet.get_absolute_url())
     else:
         snippet_form = SnippetForm(request=request)
@@ -80,7 +97,7 @@ def snippet_delete(request, snippet_id):
     if not snippet.pk in snippet_list:
         return HttpResponseForbidden('That\'s not your snippet, sucka!')
     snippet.delete()
-    return HttpResponseRedirect(reverse('snippet_new'))
+    return redirect(snippet_new)
 
 def snippet_userlist(request, template_name='dpaste/snippet_list.html'):
     

@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^get/',       include('website.get.urls')),
     url(r'^plugins/',   include('website.plugins.urls')),
     url(r'^user/',      include('website.users.urls')),
+    url(r'^paste/',     include('website.dpaste.urls')),
     url(r'^about/$',    'website.root.views.about', name='root_about'),
 
     url(r'^api/news/',   include('website.news.handlers')),

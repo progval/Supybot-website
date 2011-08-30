@@ -5,6 +5,8 @@
 		<title>{% block title %}Supybot website{% endblock %}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link rel="stylesheet" media="screen" type="text/css" href="/static/design.css" />
+		{% block extrahead %}
+		{% endblock %}
 	</head>
 <body>
 	<div id="header">
@@ -20,6 +22,7 @@
 		<li><a href="{% url get_index %}">Get Supybot</a></li>
 		<li><a href="{% url plugins_index %}">Plugins</a></li>
 		<li><a href="{% url users_index %}">Your account</a></li>
+		<li><a href="{% url dpaste_snippet_new %}">Dpaste</a></li>
 		<li><a href="{% url root_about %}">About</a></li>
 	</ul>
 	<div id="body">

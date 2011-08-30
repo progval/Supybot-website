@@ -1,6 +1,6 @@
 # Django settings for website project.
 
-from localsettings import DEBUG, DATABASES
+from localsettings import DEBUG, DATABASES, PASTE_BASE_URL
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     'templateaddons',
     'south',
     'voting',
+    'mptt',
     'django.contrib.markup',
     'website.root',
     'website.news',
@@ -110,6 +111,7 @@ INSTALLED_APPS = (
     'website.get',
     'website.plugins',
     'website.users',
+    'website.dpaste',
 )
 
 # A sample logging configuration. The only tangible logging

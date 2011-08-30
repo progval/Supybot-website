@@ -40,7 +40,7 @@ class Snippet(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('snippet_details', (self.secret_id,))
+        return ('dpaste_snippet_details', (self.secret_id,))
 
     def __unicode__(self):
         return '%s' % self.secret_id

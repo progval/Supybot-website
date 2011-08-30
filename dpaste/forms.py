@@ -19,6 +19,13 @@ EXPIRE_CHOICES = (
 EXPIRE_DEFAULT = 3600*24*30
 
 class SnippetForm(forms.ModelForm):
+    announce = forms.ChoiceField(
+            choices=(('none', '-- none --'),
+                    ('#progval', '#progval'),
+                    ('#limnoria', '#limnoria')),
+            initial='-- none --',
+            label='Announce on channel',
+    )
 
     lexer = forms.ChoiceField(
         choices=LEXER_LIST,
@@ -39,11 +46,6 @@ class SnippetForm(forms.ModelForm):
         try:
             if self.request.session['userprefs'].get('display_all_lexer', False):
                 self.fields['lexer'].choices = LEXER_LIST_ALL
-        except KeyError:
-            pass
-
-        try:
-            self.fields['author'].initial = self.request.session['userprefs'].get('default_name', '')
         except KeyError:
             pass
         
@@ -74,8 +76,8 @@ class SnippetForm(forms.ModelForm):
         model = Snippet
         fields = (
             'title',
+            'announce',
             'content',
-            'author',
             'lexer',
         )
 
