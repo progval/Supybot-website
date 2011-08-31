@@ -21,7 +21,7 @@
 		{% if page.object_list %}
 			<dd>
 				{% for result in page.object_list %}
-					<dt><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a></dt>
+				<dt><a href="{{ result.object.get_absolute_url }}">{% if result.object.name %}{{ result.object.name }}{% else %}{{ result.object.title }}{% endif %}</a></dt>
 					<dd>{{ result.object.short_description|markdown:"safe" }}</dd>
 				{% endfor %}
 			</ul>
