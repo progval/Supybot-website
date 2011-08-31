@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'south',
     'voting',
     'mptt',
+    'haystack',
     'django.contrib.markup',
     'website.root',
     'website.news',
@@ -138,3 +139,7 @@ LOGGING = {
 }
 
 LOGIN_URL = "/user/login/"
+
+HAYSTACK_SITECONF = 'website.haystackconf'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+from localsettings import HAYSTACK_WHOOSH_PATH

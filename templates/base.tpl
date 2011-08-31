@@ -23,6 +23,7 @@
 		<li><a href="{% url plugins_index %}">Plugins</a></li>
 		<li><a href="{% url users_index %}">Your account</a></li>
 		<li><a href="{% url dpaste_snippet_new %}">Dpaste</a></li>
+		<li><a href="{% url haystack_search %}">Search</a></li>
 		<li><a href="{% url root_about %}">About</a></li>
 	</ul>
 	<div id="body">

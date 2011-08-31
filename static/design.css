@@ -37,7 +37,7 @@ body {
 
 #menu li {
 	display: inline-block;
-	width: 12%;
+	width: 10.6%;
 	text-align: center;
 	background-color: #CCCCFF;
 	overflow: hidden;
@@ -127,6 +127,11 @@ table.form tr td span.helptext {
 table.form .errorlist {
 	list-style-type: none;
 	padding: 1px;
+	margin: 0;
+}
+.search_form .form ul {
+	list-style-type: none;
+	padding: 2px;
 	margin: 0;
 }
 
@@ -312,7 +317,6 @@ ul#comments li h1 {
 	min-width: 50%;
 	min-height: 200px;
 }
-
 
 /******************************************
  * Paste
