@@ -6,7 +6,7 @@ from haystack import site
 from plugins.models import Plugin
 
 class PluginIndex(RealTimeSearchIndex):
-    text = CharField(document=True)
+    text = CharField(document=True, use_template=True)
     author = CharField(model_attr='author')
     created_at = DateTimeField(model_attr='created_at')
     short_description = CharField(model_attr='short_description')
