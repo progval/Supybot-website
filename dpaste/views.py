@@ -31,6 +31,7 @@ def snippet_new(request, template_name='dpaste/snippet_new.html'):
                             'id': str(new_snippet.secret_id),
                             'channel': str(request.POST.get('announce')),
                             'name': str(new_snippet.title),
+                            'lexer': str(new_snippet.lexer),
                             })
                 except:
                     pass
