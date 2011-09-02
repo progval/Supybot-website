@@ -21,6 +21,7 @@ configuration (install package libapache2-mod-wsgi first):
 	WSGIScriptAlias / /home/progval/Supybot-website/website/django.wsgi
 	Alias /media/ /home/progval/Supybot-website/website/media/
 	Alias /static/ /home/progval/Supybot-website/website/static/
+	Alias /doc/ /home/progval/Supybot-website/website/doc/_build/html/
 
 </VirtualHost>
 

@@ -20,7 +20,7 @@ settings.py (look at import statements in settings.py, it will give you
 the list of variables).
 
 First at all, the list of dependancies in the INSTALL file. As you can see,
-it is based on Django.
+it is based on Django and uses Sphinx for the doc.
 
 The directories and applications
 ================================
@@ -29,9 +29,6 @@ In media/repositories/ are repositories the users register in order to
 auto-import plugins from them. If you use Apache with WSGI, www-data should
 have write access to this directory.
 List of the applications:
-* doc: Not used for the moment. Will be the Supybot documentation in the
-  future. For the moment, the "documentation" link in the menu targets
-  http://limnoria.github.com
 * dpaste: A modified version of Dpaste, that announces the pastes on IRC
   (through a Supybot, of course!)
 * get: Download links. Can be managed via the Django admin.
@@ -41,3 +38,6 @@ List of the applications:
   ratings system. Users can manage their own plugins.
 * users: Application that handle user operations (registration, connection,
   disconnection).
+
+The doc/ directory is a submodule that contains a Sphinx documentation. You
+need to use `make html` to generate it.
