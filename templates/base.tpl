@@ -18,7 +18,7 @@
 	<ul id="menu">
 		<li><a href="{% url root_home %}">Home</a></li>
 		<li><a href="{% url news_index %}">News</a></li>
-		<li><a href="http://limnoria.github.com">Documentation</a></li>
+		<li><a href="/doc/">Documentation</a></li>
 		<li><a href="{% url get_index %}">Get Supybot</a></li>
 		<li><a href="{% url plugins_index %}">Plugins</a></li>
 		<li><a href="{% url users_index %}">Your account</a></li>

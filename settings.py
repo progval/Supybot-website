@@ -108,7 +108,6 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'website.root',
     'website.news',
-    'website.doc',
     'website.get',
     'website.plugins',
     'website.users',
