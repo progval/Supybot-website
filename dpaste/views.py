@@ -12,9 +12,12 @@ from django.utils import simplejson
 import difflib
 from django.shortcuts import redirect
 import requests
+from django.core.context_processors import csrf
+from django.views.decorators.csrf import csrf_protect
 
 from settings import PASTE_BASE_URL
 
+@csrf_protect
 def snippet_new(request, template_name='dpaste/snippet_new.html'):
 
     if request.method == "POST":
@@ -42,6 +45,7 @@ def snippet_new(request, template_name='dpaste/snippet_new.html'):
     template_context = {
         'snippet_form': snippet_form,
     }
+    template_context.update(csrf(request))
 
     return render_to_response(
         template_name,
