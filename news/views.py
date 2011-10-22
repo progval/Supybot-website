@@ -1,3 +1,5 @@
+import hashlib
+
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response
 from django.core.context_processors import csrf
@@ -9,6 +11,10 @@ from django.http import Http404
 
 from news.models import News
 from news.models import NewsComment
+from settings import LIBRAVATAR_URL
+
+def get_libravatar_url(email):
+    return LIBRAVATAR_URL % hashlib.md5(email.lower()).hexdigest()
 
 def index(request):
     return redirect(listing, 1)
@@ -42,6 +48,18 @@ def read(request, slug):
     # Fetch the comments after posting this one.
     comments = NewsComment.objects.filter(key=news)
 
+    email = news.author.email
+    url = get_libravatar_url(email)
+    news.author.avatar = url
+    url_cache = {email: url}
+    for comment in comments:
+        email = comment.user.email
+        if email in url_cache:
+            url = url_cache[email]
+        else:
+            url = get_libravatar_url(email)
+            url_cache[email] = url
+        comment.user.avatar = url
     context = {'news': news, 'user': request.user, 'comments': comments}
     context.update(csrf(request))
     return render_to_response('news/read.tpl', context)

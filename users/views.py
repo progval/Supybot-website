@@ -1,3 +1,5 @@
+import hashlib
+
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import SuspiciousOperation
 from django.contrib.auth import logout as logout_dj
@@ -11,12 +13,17 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django import forms
 
+from settings import LIBRAVATAR_URL
+
+def get_libravatar_url(email):
+    return LIBRAVATAR_URL % hashlib.md5(email.lower()).hexdigest()
 
 @login_required
 def index(request):
     user = request.user
     context = {'username': user.username,
             'email': user.email,
+            'avatar': get_libravatar_url(user.email),
             }
 
     return render_to_response('users/profile.tpl', context)

@@ -142,3 +142,5 @@ LOGIN_URL = "/user/login/"
 HAYSTACK_SITECONF = 'website.haystackconf'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 from localsettings import HAYSTACK_WHOOSH_PATH
+
+LIBRAVATAR_URL = 'http://cdn.libravatar.org/avatar/%s?d=mm'

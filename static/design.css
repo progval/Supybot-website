@@ -156,6 +156,12 @@ table.form .errorlist {
 	display: block-inline;
 	border: 1px solid black;
 }
+#profile table td {
+	font-size: 0.8em;
+}
+#profile table td:first-line {
+	font-size: 1.25em;
+}
 #profile table td.rowspan {
 	text-align: center;
 }
@@ -304,6 +310,13 @@ ul#comments li h2 {
 }
 ul#comments li h1 {
 	text-align: left;
+}
+ul#comments .avatar {
+	float: left;
+	margin-right: 3px;
+}
+ul#comments li dl dd .comment_footer {
+	clear: both;
 }
 #comment_form {
 	margin: 0;

@@ -7,7 +7,7 @@
 	<div id="metadata">
 		<dl>
 			<dt>Author</dt>
-			<dd>{{ news.author }}</dd>
+			<dd><img src="{{ news.author.avatar }}" alt="avatar" /><br />{{ news.author }}</dd>
 
 			<dt>Created at</dt>
 			<dd>{{ news.created_at }}</dd>
@@ -31,11 +31,13 @@
 				<dl>
 					<dt>
 						<a name="comm-{{ forloop.counter }}"></a>
+						<img src="{{ comment.user.avatar }}" alt="avatar" class="avatar" />
 						Comment <a href="#comm-{{ forloop.counter }}">#{{ forloop.counter }}</a>
 						by {{ comment.user }} at {{ comment.created_date }}
 					</dt>
 					<dd>
 						{% headingcontext target_level=2 %}{{ comment.text|markdown:"safe" }}{% endheadingcontext %}
+						<div class="comment_footer"></div>
 					</dd>
 				</dl>
 			</li>

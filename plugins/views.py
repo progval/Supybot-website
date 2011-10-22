@@ -1,4 +1,5 @@
 import datetime
+import hashlib
 import os
 import re
 
@@ -23,6 +24,10 @@ from plugins.models import PluginComment
 from plugins import daemons
 
 from settings import MEDIA_ROOT
+from settings import LIBRAVATAR_URL
+
+def get_libravatar_url(email):
+    return LIBRAVATAR_URL % hashlib.md5(email.lower()).hexdigest()
 
 plugin_matcher = re.compile('[A-Z][A-Za-z0-9]+')
 
@@ -75,6 +80,18 @@ def view(request, name):
     # Fetch the comments after posting this one.
     comments = PluginComment.objects.filter(key=plugin)
 
+    email = plugin.author.email
+    url = get_libravatar_url(email)
+    plugin.author.avatar = url
+    url_cache = {email: url}
+    for comment in comments:
+        email = comment.user.email
+        if email in url_cache:
+            url = url_cache[email]
+        else:
+            url = get_libravatar_url(email)
+            url_cache[email] = url
+        comment.user.avatar = url
     context.update({'plugin': plugin, 'myvote': myVote, 'user': request.user,
         'comments': comments})
     context.update(csrf(request))

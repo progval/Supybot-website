@@ -7,7 +7,7 @@
 	<div id="metadata">
 		<dl>
 			<dt>Author</dt>
-			<dd>{{ plugin.author }}</dd>
+			<dd><img src="{{ plugin.author.avatar }}" alt="avatar" /><br />{{ plugin.author }}</dd>
 
 			<dt>Minimal Supybot version</dt>
 			<dd>{% autoescape on %}{{ plugin.minimal_version }}{% endautoescape %}</dd>
@@ -71,6 +71,7 @@
 					<dt>
 					<a name="comm-{{ forloop.counter }}"></a>
 					Comment <a href="#comm-{{ forloop.counter }}">#{{ forloop.counter }}</a>
+					<img src="{{ comment.user.avatar }}" alt="avatar" class="avatar" />
 					by {{ comment.user }} at {{ comment.created_date }}
 				</dt>
 				<dd>
