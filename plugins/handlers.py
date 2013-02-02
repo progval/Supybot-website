@@ -16,7 +16,7 @@ class PluginHandler(BaseHandler):
         if name is None:
             return Plugin.objects.filter(published=True)
         else:
-            return Plugin.objects.get(name=name, published=True)
+            return get_object_or_404(Plugin, name=name, published=True)
 
 class PluginCommentHandler(BaseHandler):
     allowed_methods = ('GET',)
