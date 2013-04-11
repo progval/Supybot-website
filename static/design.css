@@ -33,11 +33,12 @@ body {
 	width: 100%;
 	padding: 0;
 	padding-left: 1%;
+	text-align: center;
 }
 
 #menu li {
 	display: inline-block;
-	width: 10.6%;
+	min-width: 150px;
 	text-align: center;
 	background-color: #CCCCFF;
 	overflow: hidden;
