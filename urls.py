@@ -22,6 +22,4 @@ urlpatterns = patterns('',
 
     url(r'^api/news/',   include('website.news.handlers')),
     url(r'^api/plugins/',include('website.plugins.handlers')),
-
-    url(r'^search/', include('haystack.urls')),
 )
