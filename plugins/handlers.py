@@ -4,6 +4,7 @@ from voting.models import Vote
 
 from piston.handler import AnonymousBaseHandler, BaseHandler
 from piston.resource import Resource
+from django.shortcuts import get_object_or_404
 
 from models import Plugin, PluginComment
 
@@ -15,7 +16,7 @@ class PluginHandler(BaseHandler):
         if name is None:
             return Plugin.objects.filter(published=True)
         else:
-            return Plugin.objects.get(name=name, published=True)
+            return get_object_or_404(Plugin, name=name, published=True)
 
 class PluginCommentHandler(BaseHandler):
     allowed_methods = ('GET',)
@@ -24,14 +25,14 @@ class PluginCommentHandler(BaseHandler):
     fields = ('text', 'user', ('key', ('name',)), 'created_date')
 
     def read(self, request, name=None):
-        plugin = Plugin.objects.get(name=name, published=True)
+        plugin = get_object_or_404(Plugin, name=name, published=True)
         return PluginComment.objects.filter(key=plugin)
 
 class PluginRatingHandler(BaseHandler):
     allowed_methods = ('GET',)
 
     def read(self, request, name):
-        plugin = Plugin.objects.get(name=name, published=True)
+        plugin = get_object_or_404(Plugin, name=name, published=True)
         score = Vote.objects.get_score(plugin)
         return score
 
