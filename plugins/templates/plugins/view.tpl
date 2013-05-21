@@ -26,7 +26,7 @@
 		<hr />
 
 			{% if user = plugin.author %}
-				<a href="{% url plugins_admin_form plugin.name %}">Edit this plugin.</a>
+				<a href="{% url "plugins_admin_form" plugin.name %}">Edit this plugin.</a>
 				<hr />
 			{% endif %}
 		<dl>
@@ -51,7 +51,7 @@
 						</div>
 					</form>
 				{% else %}
-					You must be <a href="{% url users_login %}">logged in</a> to vote.
+					You must be <a href="{% url "users_login" %}">logged in</a> to vote.
 				{% endif %}
 			</dd>
 		</dl>

@@ -39,8 +39,8 @@
 						none / unknown
 					{% endif %}
 				<td>
-					<a href="{% url plugins_autoimport_repo repo.name %}">import</a>
-					<a href="{% url plugins_autoimport_delrepo repo.name %}">delete</a>
+					<a href="{% url "plugins_autoimport_repo" repo.name %}">import</a>
+					<a href="{% url "plugins_autoimport_delrepo" repo.name %}">delete</a>
 				</td>
 			</tr>
 		{% endfor %}

@@ -18,7 +18,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" class="rowspan">
-				<a href="{% url users_logout %}">Logout</a>
+				<a href="{% url "users_logout" %}">Logout</a>
 			</td>
 		</tr>
 	</table>

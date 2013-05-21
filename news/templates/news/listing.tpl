@@ -12,11 +12,11 @@
 {% if page.has_other_pages %}
 	<div id="pagination">
 		{% if page.has_previous %}
-		<a href="{% url news_listing page.previous_page_number %}">&lt;=</a>
+		<a href="{% url "news_listing" page.previous_page_number %}">&lt;=</a>
 		{% endif %}
 		<strong>{{ page.number }}</strong>
 		{% if page.has_next %}
-			<a href="{% url news_listing page.next_page_number %}">=&gt;</a>
+			<a href="{% url "news_listing" page.next_page_number %}">=&gt;</a>
 		{% endif %}
 	<div>
 {% endif %}
@@ -24,7 +24,7 @@
 	<ul id="news_list">
 		{% for news in page.object_list %}
 			<li>
-				<h2><a href="{% url news_read news.slug %}">{% autoescape on%}{{ news.title }}{% endautoescape %}</a></h2>
+				<h2><a href="{% url "news_read" news.slug %}">{% autoescape on%}{{ news.title }}{% endautoescape %}</a></h2>
 				{{ news.short_description|markdown:"safe" }}
 			</li>
 		{% endfor %}
