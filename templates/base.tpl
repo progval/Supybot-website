@@ -21,7 +21,7 @@
 		<li><a href="/doc/">Documentation</a></li>
 		<li><a href="http://qa.supybot.fr.cr/">Q&A</a></li>
 		<li><a href="{% url "get_index" %}">Get Supybot</a></li>
-		<li><a href="{% url "plugins_index" %}">Plugins</a></li>
+		<!-- <li><a href="{% url "plugins_index" %}">Plugins</a></li> -->
 		<li><a href="{% url "users_index" %}">Your account</a></li>
 		<li><a href="{% url "dpaste_snippet_new" %}">Dpaste</a></li>
 		<li><a href="{% url "root_about" %}">About</a></li>
