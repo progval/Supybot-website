@@ -1,6 +1,6 @@
 # Django settings for website project.
 
-from localsettings import DEBUG, DATABASES, PASTE_BASE_URL, PASTE_CHANNELS
+from localsettings import DEBUG, DATABASES, PASTE_BASE_URL, PASTE_CHANNELS, ALLOWED_HOSTS
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
