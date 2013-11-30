@@ -104,7 +104,7 @@ INSTALLED_APPS = (
     'south',
     'voting',
     'mptt',
-    'django.contrib.markup',
+#    'django.contrib.markup',
     'website.root',
     'website.news',
     'website.get',
