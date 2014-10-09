@@ -11,7 +11,7 @@ from django.http import Http404
 
 from news.models import News
 from news.models import NewsComment
-from settings import LIBRAVATAR_URL
+from website.settings import LIBRAVATAR_URL
 
 def get_libravatar_url(email):
     return LIBRAVATAR_URL % hashlib.md5(email.lower()).hexdigest()

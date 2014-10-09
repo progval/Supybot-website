@@ -8,14 +8,14 @@ from dpaste.forms import SnippetForm, UserSettingsForm
 from dpaste.models import Snippet
 from dpaste.highlight import pygmentize, guess_code_lexer
 from django.core.urlresolvers import reverse
-from django.utils import simplejson
+import json
 import difflib
 from django.shortcuts import redirect
 import requests
 from django.core.context_processors import csrf
 from django.views.decorators.csrf import csrf_protect
 
-from settings import PASTE_BASE_URL
+from website.settings import PASTE_BASE_URL
 
 @csrf_protect
 def snippet_new(request, template_name='dpaste/snippet_new.html'):
@@ -186,5 +186,5 @@ def snippet_diff(request, template_name='dpaste/snippet_diff.html'):
     
 def guess_lexer(request):
     code_string = request.GET.get('codestring', False)
-    response = simplejson.dumps({'lexer': guess_code_lexer(code_string)})
+    response = json.dumps({'lexer': guess_code_lexer(code_string)})
     return HttpResponse(response)

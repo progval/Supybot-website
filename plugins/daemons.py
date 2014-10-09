@@ -2,7 +2,7 @@ import threading
 import datetime
 import os
 
-from settings import MEDIA_ROOT
+from website.settings import MEDIA_ROOT
 
 def clone(repo):
     def f():

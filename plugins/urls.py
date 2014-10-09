@@ -4,7 +4,7 @@ from plugins import feeds
 
 charClass = '[a-zA-Z0-9]+'
 
-urlpatterns = patterns('website.plugins.views',
+urlpatterns = patterns('plugins.views',
     url(r'^$',                             'index', name='plugins_index'),
     url(r'^page/(?P<page>[0-9]+)/$',       'listing', name='plugins_listing'),
     url(r'^view/(?P<name>%s)/$'% charClass,'view', name='plugins_view'),

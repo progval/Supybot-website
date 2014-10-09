@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django import forms
 
-from settings import LIBRAVATAR_URL
+from website.settings import LIBRAVATAR_URL
 
 def get_libravatar_url(email):
     return LIBRAVATAR_URL % hashlib.md5(email.lower()).hexdigest()

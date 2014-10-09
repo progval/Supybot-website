@@ -23,8 +23,7 @@ from plugins.models import GitRepository, GitRepositoryForm
 from plugins.models import PluginComment
 from plugins import daemons
 
-from settings import MEDIA_ROOT
-from settings import LIBRAVATAR_URL
+from website.settings import MEDIA_ROOT, LIBRAVATAR_URL
 
 def get_libravatar_url(email):
     return LIBRAVATAR_URL % hashlib.md5(email.lower()).hexdigest()

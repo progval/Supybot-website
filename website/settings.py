@@ -105,12 +105,12 @@ INSTALLED_APPS = (
     'voting',
     'mptt',
 #    'django.contrib.markup',
-    'website.root',
-    'website.news',
-    'website.get',
-    'website.plugins',
-    'website.users',
-    'website.dpaste',
+    'root',
+    'news',
+    'get',
+    'plugins',
+    'users',
+    'dpaste',
 )
 
 # A sample logging configuration. The only tangible logging

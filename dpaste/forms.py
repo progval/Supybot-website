@@ -5,7 +5,7 @@ from dpaste.models import Snippet
 from dpaste.highlight import LEXER_LIST_ALL, LEXER_LIST, LEXER_DEFAULT
 import datetime
 
-from settings import PASTE_CHANNELS
+from website.settings import PASTE_CHANNELS
 
 #===============================================================================
 # Snippet Form and Handling
