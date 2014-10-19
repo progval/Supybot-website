@@ -6,7 +6,7 @@ Only one instance. The "official" one.
 However, libre software (aka FOSS) is the Good, and I don't want this website
 to be lost if I loose all my data, or if I become unreachable.
 
-The website deployed at http://supybot.fr.cr/ uses this source code, with no
+The website deployed at http://supybot.aperio.fr/ uses this source code, with no
 modification (only localsettings.py has been added).
 
 How does it work?
